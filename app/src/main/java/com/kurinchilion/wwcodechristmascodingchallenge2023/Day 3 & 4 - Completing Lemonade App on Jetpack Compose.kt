@@ -72,33 +72,46 @@ fun LemonApp(modifier: Modifier = Modifier
             numberOfTaps = (2..4).random()
         },
             R.drawable.lemon_tree,
-            "1",
-            R.string.tree_content_description )
+            R.string.tree_content_description,
+            R.string.tree_content_details,
+        )
 
         2 -> LemonTextAndImage(onClick = {numberOfTaps--
-            if(numberOfTaps == 0){currentStep = 3}},
+            if(numberOfTaps == 0)
+            {currentStep = 3}},
             R.drawable.lemon_squeeze,
-            "2",
-            R.string.lemon_content_description )
+            R.string.lemon_content_description,
+            R.string.lemon_content_details,
+        )
 
         3 -> LemonTextAndImage(onClick = {currentStep = 4},
             R.drawable.lemon_drink,
-            "3",
-            R.string.drink_content_description )
+            R.string.drink_content_description,
+            R.string.drink_content_details,
+        )
 
         4 -> LemonTextAndImage(onClick = {currentStep = 1},
             R.drawable.lemon_restart,
-            "4",
-            R.string.start_content_description )
-
+            R.string.start_content_description,
+            R.string.start_content_details,
+        )
     }
-
 }
+
+/*
+
+pass in a lambda function (i.e. onClick: () -> Unit)  to a composable.
+Make sure to use function type notation ((i.e. () -> Unit)) to specify what type of function should be passed in.
+That means that the function takes no inputs (the empty parentheses before the arrow)
+and has no return value ( the Unit following the arrow).
+Any function that matches that function type () -> Unit can be used to set the onClick handler of this Button.
+When the button is clicked, the onClick() function is called.
+ */
 
 @Composable
 fun LemonTextAndImage(onClick: () -> Unit,
                       relevantImage : Int,
-                      contentDescription :String,
+                      contentDescription : Int,
                       relevantDescription : Int,
 ){
 
@@ -109,7 +122,7 @@ fun LemonTextAndImage(onClick: () -> Unit,
     ) {
         Image(
             painter = painterResource(relevantImage),
-            contentDescription = contentDescription,
+            contentDescription = stringResource(contentDescription),
             modifier = Modifier
                 .size(200.dp)
                 .clip(RoundedCornerShape(15.dp))
