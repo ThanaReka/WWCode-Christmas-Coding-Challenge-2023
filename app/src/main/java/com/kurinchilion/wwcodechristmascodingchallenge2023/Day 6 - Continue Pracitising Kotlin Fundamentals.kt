@@ -44,12 +44,12 @@ fun printFinalTemperature(
  */
 
 
-fun main() {
-    val song = Song("Sahayane", "Shreya Ghosal", 2009, 10000)
-    song.printSong()
-    println(song.isPopular)
-
-}
+//fun main() {
+//    val song = Song("Sahayane", "Shreya Ghosal", 2009, 10000)
+//    song.printSong()
+//    println(song.isPopular)
+//
+//}
 
 class Song(
     var title: String,
