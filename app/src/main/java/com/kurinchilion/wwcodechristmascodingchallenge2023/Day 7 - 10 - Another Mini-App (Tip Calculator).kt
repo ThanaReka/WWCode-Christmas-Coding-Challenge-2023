@@ -60,8 +60,13 @@ fun TipTimeLayout() {
 
     var amountInput by remember { mutableStateOf("") }
 
+    var tipInput by remember { mutableStateOf("") }
+
+    val tipPercent = tipInput.toDoubleOrNull() ?: 0.0
     val amount = amountInput.toDoubleOrNull()?:0.0
-    val tip = calculateTip(amount)
+    val tip = calculateTip(amount, tipPercent)
+
+
 
     /*  This makes EditNumberField stateless by having hoisted the UI state to its ancestor, TipTimeLayout().
      *  The TipTimeLayout() is the state(amountInput) owner now.
@@ -88,6 +93,12 @@ fun TipTimeLayout() {
             modifier = Modifier
                 .padding(bottom = 32.dp)
                 .fillMaxWidth())
+        EditNumberField(
+            label = R.string.how_was_the_service,
+            value = tipInput,
+            onValueChange = { },
+            modifier = Modifier.padding(bottom = 32.dp).fillMaxWidth()
+        )
         Text(
 //            text = stringResource(R.string.tip_amount, "$0.00"),
             text = stringResource(R.string.tip_amount, tip),
@@ -100,16 +111,20 @@ fun TipTimeLayout() {
 
 @Composable
 fun EditNumberField(
+    // Annotate the function parameter with the @StringRes annotation to denote
+    // that the label parameter is expected to be a string resource reference,
+    // The @StringRes annotation is a type-safe way to use string resources.
+    // It indicates that the integer to be passed is a string resource from the values/strings.xml file.
     @StringRes label: Int,
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier){
-    
+
 
     TextField(
+        //
         value = value,
         onValueChange = onValueChange,
-//        label = {Text(stringResource(R.string.bill_amount))},
         label = {Text(stringResource(label))},
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
@@ -135,4 +150,3 @@ fun TipTimeLayoutPreview() {
         TipTimeLayout()
     }
 }
-
