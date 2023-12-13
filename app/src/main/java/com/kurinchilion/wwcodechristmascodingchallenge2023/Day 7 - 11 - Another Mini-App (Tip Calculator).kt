@@ -83,7 +83,7 @@ fun TipTimeLayout() {
     val tipPercent = tipInput.toDoubleOrNull() ?: 0.0
     val amount = amountInput.toDoubleOrNull()?:0.0
     val tip = calculateTip(amount, tipPercent, roundUp)
-    
+
     /*  This makes EditNumberField stateless by having hoisted the UI state to its ancestor, TipTimeLayout().
      *  The TipTimeLayout() is the state(amountInput) owner now.
      */
