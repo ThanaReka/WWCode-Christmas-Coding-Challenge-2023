@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.kurinchilion.wwcodechristmascodingchallenge2023"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.kurinchilion.wwcodechristmascodingchallenge2023"

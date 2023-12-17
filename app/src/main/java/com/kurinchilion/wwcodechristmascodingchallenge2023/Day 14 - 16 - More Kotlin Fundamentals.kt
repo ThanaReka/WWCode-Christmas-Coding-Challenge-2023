@@ -51,6 +51,38 @@ val events = mutableListOf(
 )
 
 fun main() {
-    val event1 = Event("Study Kotlin", "Commit to studying Kotlin at least 15 minutes per day.", Daypart.EVENING, 15)
-    println(event1)
+    val shortEvents = events.filter {
+        it.durationInMinutes < 60
+    }
+
+    val morningEvents = events.filter{
+        it.daypart == Daypart.MORNING
+    }
+
+    val afternoonEvents = events.filter{
+        it.daypart == Daypart.AFTERNOON
+    }
+
+    val eveningEvents = events.filter{
+        it.daypart == Daypart.EVENING
+    }
+
+    val durationOfEvent = if (events[0].durationInMinutes < 60) {
+        "short"
+    } else {
+        "long"
+    }
+
+    println("You have ${shortEvents.size} events.\n")
+
+    println("Morning: ${morningEvents.size} events")
+
+    println("Afternoon: ${afternoonEvents.size} events")
+
+    println("Evening: ${eveningEvents.size} events")
+
+    println("Last event of the day: ${events.last().title}")
+
+    println("Duration of first event of the day: $durationOfEvent")
+
 }
